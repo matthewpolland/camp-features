@@ -1,0 +1,18 @@
+$present: #C0D890;
+$missing: #ED4337;
+
+.bubble {
+  border-radius: 5px;
+  padding: 3px;
+  display: inline-block;
+}
+
+.bubble-true {
+  @extend .bubble;
+	background-color: $present;
+}
+
+.bubble-false {
+  @extend .bubble;
+  background-color: $missing;
+}

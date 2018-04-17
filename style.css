@@ -1,0 +1,13 @@
+.bubble, .bubble-false, .bubble-true {
+  border-radius: 5px;
+  padding: 3px;
+  display: inline-block;
+}
+
+.bubble-true {
+  background-color: #C0D890;
+}
+
+.bubble-false {
+  background-color: #ED4337;
+}
