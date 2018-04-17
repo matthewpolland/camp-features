@@ -12,6 +12,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
   <script type="text/babel">
+
+    // returns individual bubbles and children
     class Bubble extends React.Component{
       constructor(props) {
         super(props);
@@ -45,6 +47,7 @@
       }
     }
 
+    // returns groups of bubbles
     const ShowFeatures = ({features}) => {
       const bubbled = features.map((feature, key) => {
         const {title, presence, subfeatures} = feature;
