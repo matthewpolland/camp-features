@@ -11,15 +11,56 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
   <script type="text/babel">
-  class Greeting extends React.Component {
-      render() {
-          return (<p>Hello world</p>);
+    class Bubble extends React.Component{
+      constructor(props) {
+        super(props);
+
+        this.state = { 
+          expandFeatures: false
+        };
+
+        this.toggleSubfeatures = this.toggleSubfeatures.bind(this);
       }
-  }
-  ReactDOM.render(
-      <Greeting />,
+
+      // allows child bubbles to be shown or hidden
+      toggleSubfeatures() {
+        const expandFeatures = !this.state.expandFeatures;
+
+        this.setState({
+          expandFeatures
+        });
+      }
+
+      render() {
+        const {title, presence, subfeatures} = this.props;
+        return (
+          <li>
+            <div onClick={this.toggleSubfeatures} className={`bubble-${presence}`}>{title}</div>
+            {this.state.expandFeatures ? 
+              <ShowFeatures features={subfeatures} /> :
+              <div />}
+          </li>   
+        );
+      }
+    }
+
+    const ShowFeatures = ({features}) => {
+      const bubbled = features.map((feature, key) => {
+        const {title, presence, subfeatures} = feature;
+        
+        return <Bubble title={title}
+          presence={presence}
+          subfeatures={subfeatures}
+          key={key} />
+      });
+
+      return <ul>{bubbled}</ul>;
+    }
+
+    ReactDOM.render(
+      <ShowFeatures features={FEATURES} />,
       document.getElementById('root')
-  );
+    );
   </script>
 </body>
 </html>
